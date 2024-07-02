@@ -30,5 +30,12 @@
   - name: print output
     ansible.builtin.debug:
       msg: "Output: {{mysql_connection_output}}"
-      
+  
+  - name: Install python Mysql dependencies
+    ansible.buitin.pip:
+      name:
+      - PyMySQL
+      - Cryptography
+    executable: pip3.9
+    
 
