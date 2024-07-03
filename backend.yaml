@@ -2,6 +2,9 @@
   hosts: backend
   become: yes
   vars:
+    mysql_root_password: ExpenseApp@1
+    mysql_login_host: db.chandudevops.online
+
 
   tasks:
   - name: Disable default nodejs
@@ -46,6 +49,31 @@
     ansible.builtin.command: npm install
     args:
       chdir: /app  #Change the working directory to /app  and run the command 
+
+  - name: Copy file from Ansible server to remote server
+    ansible.builtin.copy:
+    src: backend.service
+    dest: /etc/systemd/system/backend.service
+
+  - name: Install python Mysql dependencies
+    ansible.builtin.pip:
+      name:
+      - PyMySQL  # To connect to mysql db from ansible
+      - cryptography
+      executable: pip3.9
+
+  # To load schema
+  # mysql -h <MYSQL-SERVER-IPADDRESS> -uroot -pExpenseApp@1 < /app/schema/backend.sql
+
+  - name: Import data into mysql
+    community.mysql.mysql_db:
+    login_user: root
+    login_password: "{{mysql_root_password}}"
+    login_host: "{{mysql_login_host}}" # conncetion is established with mysql server
+    target: /app/schema/backend.sql  # target from where we need to load the data
+    state: import  
+    name: all             # to import all the data
+
 
 
 
