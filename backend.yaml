@@ -52,8 +52,8 @@
 
   - name: Copy file from Ansible server to remote server
     ansible.builtin.copy:
-    src: backend.service
-    dest: /etc/systemd/system/backend.service
+      src: backend.service
+      dest: /etc/systemd/system/backend.service
 
   - name: Install python Mysql dependencies
     ansible.builtin.pip:
@@ -67,12 +67,12 @@
 
   - name: Import data into mysql
     community.mysql.mysql_db:
-    login_user: root
-    login_password: "{{mysql_root_password}}"
-    login_host: "{{mysql_login_host}}" # conncetion is established with mysql server
-    target: /app/schema/backend.sql  # target from where we need to load the data
-    state: import  
-    name: all             # to import all the data
+      login_user: root
+      login_password: "{{mysql_root_password}}"
+      login_host: "{{mysql_login_host}}" # conncetion is established with mysql server
+      target: /app/schema/backend.sql  # target from where we need to load the data
+      state: import  
+      name: all             # to import all the data
 
 
 
