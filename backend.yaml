@@ -36,7 +36,11 @@
     ansible.builtin.unarchive:
       src: /tmp/backend.zip  # by default ansible checks in ansible server
       dest: /app
-      #remote_src: yes   # Unarchive a file that is already on the remote machine
+      # If we get below error, it means ansible is chceking for the file in ansible-server
+      #{"changed": false, "msg": "Could not find or access '/tmp/backend.zip' on the Ansible Controller.\nIf you are using a 
+      # module and expect the file to exist on the remote, see the remote_src option"}
+
+      remote_src: yes   # Unarchive a file that is already on the remote machine
 
 
   
