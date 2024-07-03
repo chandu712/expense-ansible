@@ -21,7 +21,6 @@
     ansible.builtin.pip:
       name:
       - PyMySQL
-      - Cryptography
     executable: pip3.9
 
 # Check password is already setup or not
