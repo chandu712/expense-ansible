@@ -11,9 +11,13 @@
     ansible.builtin.command: dnf module enable nodejs:20 -y
   
   - name: Install nodejs
-    ansible.builtin.dnf:
+    ansible.builtin.dnf: # only works for redhat family
       name: "{{item}}"
       state: installed
     loop:
     - nodejs
     - mysql
+
+  - name: Create Expense user
+    ansible.builtin.user:
+      name: expense
