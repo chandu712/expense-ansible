@@ -20,7 +20,7 @@
       enabled: yes
   
   # Ansible community module is not developed by ansible people, we can develop modules and contribute to ansible.
-
+# install python mysql dependencies(libraries) to connect to mysql server from ansible
   - name: Install python Mysql dependencies
     ansible.builtin.pip:
       name:
