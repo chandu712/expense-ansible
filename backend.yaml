@@ -42,5 +42,11 @@
 
       remote_src: yes   # Unarchive a file that is already on the remote machine
 
+  - name: Install npm dependencies
+    ansible.builtin.command: npm install
+    args:
+      chdir: /app  #Change the working directory to /app  and run the command 
+
+
 
   
