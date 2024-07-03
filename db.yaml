@@ -17,6 +17,13 @@
   
   # Ansible community module is not developed by ansible people, we can develop modules and contribute to ansible.
 
+- name: Install python Mysql dependencies
+    ansible.buitin.pip:
+      name:
+      - PyMySQL
+      - Cryptography
+    executable: pip3.9
+    
 # Check password is already setup or not
   - name: Check DB connection
     community.mysql.mysql_info:
@@ -31,11 +38,6 @@
     ansible.builtin.debug:
       msg: "Output: {{mysql_connection_output}}"
   
-  - name: Install python Mysql dependencies
-    ansible.buitin.pip:
-      name:
-      - PyMySQL
-      - Cryptography
-    executable: pip3.9
-    
+  
+
 
